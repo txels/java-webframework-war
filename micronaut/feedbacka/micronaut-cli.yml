@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: feedbacka
+---
+testFramework: junit
+sourceLanguage: java
