@@ -1,6 +1,8 @@
 Thumbs.db
 .DS_Store
 .gradle
+_data/
+bin/
 build/
 target/
 out/
@@ -11,3 +13,5 @@ out/
 .project
 .settings
 .classpath
+/.apt_generated/
+/.apt_generated_tests/
