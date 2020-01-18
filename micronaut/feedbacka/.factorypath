@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<factorypath>
+	<factorypathentry kind="EXTJAR" id="/Users/carles/.gradle/caches/modules-2/files-2.1/io.micronaut/micronaut-inject-java/1.2.8/4d7ff73a9a9e59112b90b4bc93726a9edaf16b72/micronaut-inject-java-1.2.8.jar" enabled="true" runInBatchMode="false"/>
+	<factorypathentry kind="EXTJAR" id="/Users/carles/.gradle/caches/modules-2/files-2.1/io.micronaut/micronaut-validation/1.2.8/c0497e4e57f461cdd604aae9d0192562de275a2d/micronaut-validation-1.2.8.jar" enabled="true" runInBatchMode="false"/>
+	<factorypathentry kind="EXTJAR" id="/Users/carles/.gradle/caches/modules-2/files-2.1/io.micronaut/micronaut-aop/1.2.8/c3fe8b147b41ed80143d3373517e47cd3b5f5cca/micronaut-aop-1.2.8.jar" enabled="true" runInBatchMode="false"/>
+	<factorypathentry kind="EXTJAR" id="/Users/carles/.gradle/caches/modules-2/files-2.1/io.micronaut/micronaut-http/1.2.8/132f30b988809f91359a3a69901380c863bf066d/micronaut-http-1.2.8.jar" enabled="true" runInBatchMode="false"/>
+	<factorypathentry kind="EXTJAR" id="/Users/carles/.gradle/caches/modules-2/files-2.1/io.micronaut/micronaut-inject/1.2.8/685cea1ae201facb6fcab1a4b22a19be6966e06a/micronaut-inject-1.2.8.jar" enabled="true" runInBatchMode="false"/>
+	<factorypathentry kind="EXTJAR" id="/Users/carles/.gradle/caches/modules-2/files-2.1/io.micronaut/micronaut-core/1.2.8/d2c4e081cd9eeb62812cb12cec9953f1a4ec5580/micronaut-core-1.2.8.jar" enabled="true" runInBatchMode="false"/>
+	<factorypathentry kind="EXTJAR" id="/Users/carles/.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.3.2/934c04d3cfef185a8008e7bf34331b79730a9d43/javax.annotation-api-1.3.2.jar" enabled="true" runInBatchMode="false"/>
+	<factorypathentry kind="EXTJAR" id="/Users/carles/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.2/25ea2e8b0c338a877313bd4672d3fe056ea78f0d/jsr305-3.0.2.jar" enabled="true" runInBatchMode="false"/>
+	<factorypathentry kind="EXTJAR" id="/Users/carles/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.24/13a9c0d6776483c3876e3ff9384f9bb55b17001b/snakeyaml-1.24.jar" enabled="true" runInBatchMode="false"/>
+	<factorypathentry kind="EXTJAR" id="/Users/carles/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.26/77100a62c2e6f04b53977b9f541044d7d722693d/slf4j-api-1.7.26.jar" enabled="true" runInBatchMode="false"/>
+	<factorypathentry kind="EXTJAR" id="/Users/carles/.gradle/caches/modules-2/files-2.1/org.reactivestreams/reactive-streams/1.0.2/323964c36556eb0e6209f65c1cef72b53b461ab8/reactive-streams-1.0.2.jar" enabled="true" runInBatchMode="false"/>
+	<factorypathentry kind="EXTJAR" id="/Users/carles/.gradle/caches/modules-2/files-2.1/javax.validation/validation-api/2.0.1.Final/cb855558e6271b1b32e716d24cb85c7f583ce09e/validation-api-2.0.1.Final.jar" enabled="true" runInBatchMode="false"/>
+	<factorypathentry kind="EXTJAR" id="/Users/carles/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar" enabled="true" runInBatchMode="false"/>
+</factorypath>
