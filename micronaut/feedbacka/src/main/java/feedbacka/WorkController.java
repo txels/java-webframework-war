@@ -11,6 +11,7 @@ import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
+import io.micronaut.http.annotation.Produces;
 
 @Controller("/work")
 class WorkController {
@@ -18,13 +19,14 @@ class WorkController {
 	@Inject
 	Storage storage;
 
-	@Get(value = "/{id}", produces = MediaType.TEXT_PLAIN)
-	public String getItem(String id) throws IOException {
-		return storage.get(id).getText();
+	@Get("/{id}")
+	public TextItem getItem(String id) throws IOException {
+		return storage.get(id, TextItem.class);
 	}
 
-	@Post(value = "/", consumes = MediaType.TEXT_PLAIN, produces = MediaType.TEXT_PLAIN)
-	public String putItem(@Body String text) throws Exception {
-		return storage.put(new TextItem(text));
+	@Post("/")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String createItem(@Body TextItem item) throws Exception {
+		return storage.put(item);
 	}
 }

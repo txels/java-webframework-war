@@ -2,15 +2,15 @@ package feedbacka;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.Arrays;
 import java.util.UUID;
 
 import javax.inject.Inject;
 
 import org.junit.jupiter.api.Test;
 
+import feedbacka.models.Comment;
+import io.micronaut.core.type.Argument;
 import io.micronaut.http.HttpRequest;
-import io.micronaut.http.MediaType;
 import io.micronaut.http.MutableHttpRequest;
 import io.micronaut.http.client.HttpClient;
 import io.micronaut.http.client.annotation.Client;
@@ -28,22 +28,25 @@ public class CommentControllerSpec {
 
 	@Test
 	void youGetWhatYouPut() {
-		MutableHttpRequest<String> request = HttpRequest.POST("/dummy-uuid/comments", "no comment")
-				.contentType(MediaType.TEXT_PLAIN_TYPE);
+		Comment comment = new Comment("dummy-uuid", "no comment");
+		MutableHttpRequest<Comment> request = HttpRequest.POST("/dummy-uuid/comments", comment);
 		String commentid = client.toBlocking().retrieve(request, String.class);
-		String response = client.toBlocking().retrieve(HttpRequest.GET("/dummy-uuid/comments/" + commentid));
-		assertEquals("no comment", response);
+		Comment response = client.toBlocking()
+				.retrieve(HttpRequest.GET("/dummy-uuid/comments/" + commentid), Comment.class);
+		assertEquals(comment.getText(), response.getText());
 	}
 
 	@Test
 	void getAllComments() {
 		String uuid = UUID.randomUUID().toString();
-		MutableHttpRequest<String> request = HttpRequest.POST("/" + uuid + "/comments", "no comment")
-				.contentType(MediaType.TEXT_PLAIN_TYPE);
-		client.toBlocking().retrieve(request, String.class);
-		client.toBlocking().retrieve(request, String.class);
-		Iterable<String> response = client.toBlocking().retrieve(HttpRequest.GET("/" + uuid + "/comments/"),
-				Iterable.class);
-		assertEquals(Arrays.asList("no comment", "no comment"), response);
+		Comment comment = new Comment(uuid, "no comment");
+		MutableHttpRequest<Comment> request = HttpRequest.POST("/" + uuid + "/comments", comment);
+		client.toBlocking().retrieve(request);
+		client.toBlocking().retrieve(request);
+		Iterable<Comment> response = client.toBlocking().retrieve(
+				HttpRequest.GET("/" + uuid + "/comments/"), Argument.listOf(Comment.class));
+		for (Comment c : response) {
+			assertEquals("no comment", c.getText());
+		}
 	}
 }

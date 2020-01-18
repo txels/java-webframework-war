@@ -5,8 +5,8 @@ public class Comment {
 	public Comment() {
 	};
 
-	public Comment(String id, String text) {
-		this.workId = id;
+	public Comment(String workId, String text) {
+		this.workId = workId;
 		this.text = text;
 	}
 

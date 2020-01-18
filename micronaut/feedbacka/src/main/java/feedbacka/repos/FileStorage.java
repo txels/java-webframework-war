@@ -15,6 +15,8 @@ import java.util.List;
 
 import javax.inject.Singleton;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import feedbacka.models.Comment;
 import feedbacka.models.TextItem;
 import io.micronaut.context.annotation.Value;
@@ -25,17 +27,19 @@ public class FileStorage implements Storage {
 	@Value("${storage.location}")
 	String location;
 
+	private final ObjectMapper mapper = new ObjectMapper();
+
 	public FileStorage() {
 	}
 
-	public TextItem get(String id) throws IOException {
-		return new TextItem(readFromDisc(id));
+	public <T> T get(String id, Class<T> clazz) throws IOException {
+		return mapper.readValue(readFromDisc(id), clazz);
 	}
 
 	public String put(TextItem item) throws IOException {
-		String id = item.createId();
-		saveToDisc(id, item.getText());
-		return id;
+		String jsonItem = mapper.writeValueAsString(item);
+		saveToDisc(item.getId(), jsonItem);
+		return item.getId();
 	}
 
 	@Override
@@ -60,16 +64,16 @@ public class FileStorage implements Storage {
 
 	private String readFromDisc(String name) throws IOException {
 		String filename = makePath(name) + ".txt";
-		return new String(Files.readAllBytes(Paths.get(filename)), UTF_8);
+		return new String(Files.readAllBytes(Paths.get(filename)), UTF_8).trim();
 	}
 
 	@Override
-	public Iterable<String> getAll(String workid) throws IOException {
+	public Iterable<Comment> getAll(String workid) throws IOException {
 		String path = makePath(workid);
-		String contents[] = new File(path).list();
-		List<String> comments = new ArrayList<String>();
-		for (String commentFile : Arrays.asList(contents)) {
-			comments.add(this.get(workid + File.separator + commentFile.split("\\.")[0]).getText());
+		String commentFiles[] = new File(path).list();
+		List<Comment> comments = new ArrayList<Comment>();
+		for (String commentFile : Arrays.asList(commentFiles)) {
+			comments.add(this.get(workid + File.separator + commentFile.split("\\.")[0], Comment.class));
 		}
 		return comments;
 	}

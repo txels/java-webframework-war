@@ -6,8 +6,8 @@ import javax.inject.Inject;
 
 import org.junit.jupiter.api.Test;
 
+import feedbacka.models.TextItem;
 import io.micronaut.http.HttpRequest;
-import io.micronaut.http.MediaType;
 import io.micronaut.http.MutableHttpRequest;
 import io.micronaut.http.client.HttpClient;
 import io.micronaut.http.client.annotation.Client;
@@ -24,20 +24,20 @@ public class WorkControllerSpec {
 	HttpClient client;
 
 	@Test
-	void putRespondsWithUuid() {
-		MutableHttpRequest<String> request = HttpRequest.POST("/", "Carles is bored")
-				.contentType(MediaType.TEXT_PLAIN_TYPE);
+	void postRespondsWithUuid() {
+		TextItem ti = new TextItem("Carles is bored");
+		MutableHttpRequest<TextItem> request = HttpRequest.POST("/", ti);
 		String response = client.toBlocking().retrieve(request);
 		assertEquals(36, response.length());
 	}
 
 	@Test
 	void youGetWhatYouPut() {
-		MutableHttpRequest<String> request = HttpRequest.POST("/", "Carles is bored")
-				.contentType(MediaType.TEXT_PLAIN_TYPE);
+		TextItem ti = new TextItem("Carles is bored");
+		MutableHttpRequest<TextItem> request = HttpRequest.POST("/", ti);
 		String id = client.toBlocking().retrieve(request, String.class);
-		String response = client.toBlocking().retrieve(HttpRequest.GET(id));
-		assertEquals("Carles is bored", response);
+		TextItem response = client.toBlocking().retrieve(HttpRequest.GET(id), TextItem.class);
+		assertEquals(ti.getText(), response.getText());
 	}
 
 }
