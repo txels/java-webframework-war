@@ -1,8 +1,11 @@
 micronaut:
-  application:
-    name: feedbacka
-  server:
-    port: 8902
-
+   application:
+      name: feedbacka
+   server:
+      port: 8901
+   io:
+      watch:
+         paths: src/main
+         restart: true
 storage:
-  location: _data
+   location: _data

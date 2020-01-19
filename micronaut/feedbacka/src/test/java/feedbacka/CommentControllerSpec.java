@@ -9,7 +9,6 @@ import javax.inject.Inject;
 import org.junit.jupiter.api.Test;
 
 import feedbacka.models.Comment;
-import io.micronaut.core.type.Argument;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.MutableHttpRequest;
 import io.micronaut.http.client.HttpClient;
@@ -43,8 +42,8 @@ public class CommentControllerSpec {
 		MutableHttpRequest<Comment> request = HttpRequest.POST("/" + uuid + "/comments", comment);
 		client.toBlocking().retrieve(request);
 		client.toBlocking().retrieve(request);
-		Iterable<Comment> response = client.toBlocking().retrieve(
-				HttpRequest.GET("/" + uuid + "/comments/"), Argument.listOf(Comment.class));
+		Comment[] response = client.toBlocking()
+				.retrieve(HttpRequest.GET("/" + uuid + "/comments/"), Comment[].class);
 		for (Comment c : response) {
 			assertEquals("no comment", c.getText());
 		}

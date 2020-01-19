@@ -1,7 +1,7 @@
 Thumbs.db
 .DS_Store
 .gradle
-_data/
+_data*/
 bin/
 build/
 target/

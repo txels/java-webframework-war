@@ -4,6 +4,40 @@ import java.util.UUID;
 
 public class TextItem {
 
+	public TextItem(String content) {
+		this.text = content;
+		this.createId();
+	}
+
+	public TextItem() {
+		this(null);
+	};
+
+	public String getText() {
+		return this.text;
+	}
+
+	public void setText(String content) {
+		this.text = content;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		if (id == null) {
+			createId();
+		} else {
+			this.id = id;
+		}
+	}
+
+	private String createId() {
+		id = UUID.randomUUID().toString();
+		return id;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -29,37 +63,7 @@ public class TextItem {
 		return true;
 	}
 
-	public TextItem() {
-	};
-
-	public TextItem(String content) {
-		this.text = content;
-		this.createId();
-	}
-
-	public String getText() {
-		return this.text;
-	}
-
-	public void setText(String content) {
-		this.text = content;
-	}
-
-	private String createId() {
-		id = UUID.randomUUID().toString();
-		return id;
-	}
-
-	private String id;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
 	private String text;
+	private String id;
 
 }

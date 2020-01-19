@@ -24,7 +24,7 @@ public class WorkControllerSpec {
 	HttpClient client;
 
 	@Test
-	void postRespondsWithUuid() {
+	void postGeneratesUuid() {
 		TextItem ti = new TextItem("Carles is bored");
 		MutableHttpRequest<TextItem> request = HttpRequest.POST("/", ti);
 		String response = client.toBlocking().retrieve(request);
@@ -38,6 +38,7 @@ public class WorkControllerSpec {
 		String id = client.toBlocking().retrieve(request, String.class);
 		TextItem response = client.toBlocking().retrieve(HttpRequest.GET(id), TextItem.class);
 		assertEquals(ti.getText(), response.getText());
+		assertEquals(36, ti.getId().length());
 	}
 
 }
