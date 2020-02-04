@@ -10,7 +10,10 @@ repositories {
 
 dependencies {
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+    implementation 'io.quarkus:quarkus-config-yaml'
     implementation 'io.quarkus:quarkus-resteasy'
+    implementation 'io.quarkus:quarkus-resteasy-jackson'
+    implementation 'io.quarkus:quarkus-smallrye-health'
 
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'
@@ -28,3 +31,13 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
+quarkusDev {
+    workingDir = rootProject.projectDir
+}
+
+test {
+	// "gradle -Ddebug=true test" ...to be able to attach to tests on port 5006 for debugging
+	if (System.getProperty('debug', 'false') == 'true') {
+		jvmArgs '-Xdebug', '-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5006'
+	}
+}

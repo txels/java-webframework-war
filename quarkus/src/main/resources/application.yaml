@@ -1,0 +1,20 @@
+#
+# quarkus config
+quarkus:
+   http:
+      port: 8901
+      test-port: 8902
+      cors:
+         null: true
+         methods: GET,PUT,POST
+         cucumber: red
+         origins: http://localhost:8080
+#
+# app-specific config
+storage:
+   location: _data
+#
+# overrides for test
+'%test':
+   storage:
+      location: _data-test
